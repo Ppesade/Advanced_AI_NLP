@@ -1,6 +1,6 @@
 #Steps
 #1) Base: Build a binary classifier for the 4 targets (4 classifiers) - Patrick
-#1a) methodologies to use: different ngrams, different learning algorithms -Chris
+#1a) methodologies to use: different ngrams, different learning algorithms -Chris 
 #1b) Hyperparameter tuning for: model + optimization algo - Chris
 #1c) multiclass models - Patrick ; Comment: convenience functions we wrote to inspect weights assume a binary weight vector
 #1d) Optional: tune threshold of classifier towards high-recall/high-precision classifier respectively 
@@ -64,12 +64,34 @@ def define_pipeline(model):
                 ])
     return pipeline
 
+# Link for SGD: https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDClassifier.html
+# Link for Naive Bayes: https://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.MultinomialNB.html
+
+def define_param_grid(ngram, alpha):
+    """
+    Creates a dictionary of the range of ngram values and alpha values you want to take in consideration.
+    Params:
+    - ngram: int. Returns a list of ranges of ngram in tuples: (1, 1) up to (1, ngram)
+    - alpha: int. Returns a list of ranges of alpha in tuples: 0.001 to 10^alpha in steps of 10^-3
+    """
+    #ngram range for hyperparameter tuning
+    vect__ngram_range = []
+    for i in range(ngram):
+        vect__ngram_range.append((1,i+1))
+    #alpha range for hyperparameter tuning
+    model__alpha = [10 ** - (x*3) for x in range(1, alpha + 1)]
+    #create dictionary of model grid parameters
+    model_grid_parameters = {
+    'vect__ngram_range': vect__ngram_range,
+    'model__alpha': model__alpha
+}
+    return model_grid_parameters
+    
+
 def define_gridsearch(model: object, param_grid: object, scorer = "accuracy"):
     pipe = define_pipeline(model)
     grid = GridSearchCV(pipe, param_grid, cv = 5, scoring = scorer, return_train_score = True)
     return grid
-
-
 
 def crossvalidation_report_df(grid_cv):
 
@@ -297,6 +319,14 @@ def show_multiclasslearning_curve():
     plt.show()
 
 
+# n-gram instead of bag of words to take in consideration word order and not shuffle meaning
+
+def make_sklearn_analyzer(n=1):
+    """Creates a text analyzer from sklearn that extracts n-grams."""
+    vect = CountVectorizer(stop_words=[], ngram_range=(1,n))
+    analyzer = vect.build_analyzer()
+    return analyzer
+
 
 
 
@@ -392,5 +422,3 @@ if __name__ == "__main__":
     #looking at the learning curve
     print("\n Learning curve of models \n")
     show_multiclasslearning_curve()
-
-    
