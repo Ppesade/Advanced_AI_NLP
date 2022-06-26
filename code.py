@@ -98,7 +98,16 @@ def define_pipeline(model):
 # Link for Logistic Regression: https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html
 # Tips:                         https://machinelearningmastery.com/hyperparameters-for-classification-machine-learning-algorithms/
 
-def define_param_grid(model, ngram):
+def define_param_grid(model: object, ngram: int):
+    """
+    Function that returns the parameter grid based on the model that was defined in the pipeline and the n-gram selected.
+    Params:
+    - model: object. The model that you want to fine tune with hyperparameters.
+    - ngram: int. The range of ngrams you want to fine tune the model with.
+    Output:
+    - parameters: dict. The parameters defined in the function for the specific model chosen.
+    IMP: More parameters can be added for each model to add complexity BUT will take much longer!
+    """
 
     # Get the model chosen from the pipe
     model_chosen = define_pipeline(model)['model']
@@ -119,18 +128,18 @@ def define_param_grid(model, ngram):
         parameters = {
     'vect__ngram_range': vect__ngram_range,
     'model__alpha': [10 ** -x for x in range(1, 10)],
-    'model__loss': list('hinge', 'log_loss', 'log', 'modified_huber', 
+    'model__loss': ['hinge', 'log_loss', 'log', 'modified_huber', 
                     'squared_hinge', 'perceptron', 'squared_error', 
-                    'huber', 'epsilon_insensitive', 'squared_epsilon_insensitive'),
-    'model__penalty': list('l2', 'l1', 'elasticnet'),
+                    'huber', 'epsilon_insensitive', 'squared_epsilon_insensitive'],
+    'model__penalty': ['l2', 'l1', 'elasticnet'],
     'model__fit_intercept': [True, False],
     }
 
     if model_chosen == knn:
         parameters = {
     'vect__ngram_range': vect__ngram_range,
-    'model__leaf_size': list(range(1, 50)),
-    'model__n_neighbors': list(range(1, 30)),
+    'model__leaf_size': [range(1, 50)],
+    'model__n_neighbors': [range(1, 30)],
     'model__algorithm': ['auto', 'ball_tree', 'kd_tree', 'brute'],
     'model__weights': ['uniform', 'distance'],
     'model__p': [1, 2],
@@ -204,7 +213,6 @@ def define_gridsearch(model: object, param_grid: dict, scorer = "accuracy"):
     return grid
 
 def crossvalidation_report_df(grid_cv):
-
     """Convenience function.
     Creates a simple dataframe that reports the results of a
     cros-validation experiment. The input grid_cv must be fit.
@@ -428,18 +436,6 @@ def show_multiclasslearning_curve():
     plt.legend()
     plt.show()
 
-
-# n-gram instead of bag of words to take in consideration word order and not shuffle meaning
-
-def make_sklearn_analyzer(n=1):
-    """Creates a text analyzer from sklearn that extracts n-grams."""
-    vect = CountVectorizer(stop_words=[], ngram_range=(1,n))
-    analyzer = vect.build_analyzer()
-    return analyzer
-
-
-
-
 if __name__ == "__main__":
 
     #Load data
@@ -449,11 +445,37 @@ if __name__ == "__main__":
 
     ####### models for each target ######
 
-    #Define model
+    #Define model (Base)
     param_grid = {
         'vect__ngram_range': [(1,1)],
         'model__alpha': [(1e-9)]
         }    
+
+############################################################                   #################################################################
+############################################################   THE STRUCTURE   #################################################################
+############################################################                   #################################################################
+
+    # Scope: Define model (w/ Hyperparameters) -> Switch around 'model' and put 'ngram' as high as you can to evaluate best estimators per model.
+     
+    # Method: Choose ngram == X. The higher you go the longer it will take. 3 ngrams should suffice ?
+
+    #               1. mr_naivebayes (Get best estimator for this)
+    #               2. sgd (Get best estimator for this)
+    #               3. knn (Same)
+    #               4. svm (Same)
+    #               5. rf (Same)
+    #               6. dt (Same)
+    #               7. lr (Same)
+
+    # Result: Choose the best model.
+
+############################################################                   #################################################################
+############################################################  END OF STRUCTURE #################################################################
+############################################################                   #################################################################
+
+    ### Example of how to define the param_grid using the function Chris created
+    # param_grid = define_param_grid(model = sgd, ngram = 2)
+
     grid = define_gridsearch(model = sgd, param_grid = param_grid, scorer = "accuracy")
     
     #Create reporting data
