@@ -25,34 +25,55 @@
 
 #Imports
 
+from distutils.util import rfc822_escape
 import pandas as pd
 import numpy as np
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import GridSearchCV, learning_curve
+from sklearn.model_selection import RandomizedSearchCV
+from scipy.stats import reciprocal, uniform
 
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 
 # Models
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.linear_model import SGDClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.svm import SVC
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.linear_model import LogisticRegression
 
-#Reporting
+# Reporting
 from sklearn.metrics import classification_report
 from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
 
 # Models used
 
-#1) naive bayes model
+#1. Naive Bayes Model
 mr_naivebayes = MultinomialNB()
 
-#2) SGD Classifier
-sgd =  SGDClassifier(loss='hinge', penalty='l2', alpha=1e-3, random_state=42, max_iter=5, tol=None)
+#2. SGD Classifier
+sgd = SGDClassifier(loss='hinge', penalty='l2', alpha=1e-3, random_state=42, max_iter=5, tol=None)
 
-#3) SGD Classifier multiclass
-sgd_multiclass =  SGDClassifier(loss='hinge', penalty='l2', alpha=1e-3, random_state=42, max_iter=5, tol=None)
+#3. SGD Classifier Multiclass
+sgd_multiclass = SGDClassifier(loss='hinge', penalty='l2', alpha=1e-3, random_state=42, max_iter=5, tol=None)
 
+#4. K-Nearest Neigbours  
+knn = KNeighborsClassifier()
 
+#5. Support Vector Machine
+svm = SVC(random_state=42)
+
+#6. Random Forest
+rf = RandomForestClassifier(random_state=42)
+
+#7. Decision Tree
+dt = DecisionTreeRegressor(random_state=42)
+
+#8. Logistic Regression
+lr = LogisticRegression(random_state=42)
 
 #Pipeline
 
@@ -64,30 +85,119 @@ def define_pipeline(model):
                 ])
     return pipeline
 
-# Link for SGD: https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDClassifier.html
+# Link for Stochastic Gradient Descent: https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDClassifier.html
 # Link for Naive Bayes: https://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.MultinomialNB.html
+# Link for K-Nearest Neighbours: https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html
+# Tips:                          https://medium.datadriveninvestor.com/k-nearest-neighbors-in-python-hyperparameters-tuning-716734bc557f
+# Link for Support Vector Machine: https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html
+# Tips:                            https://medium.com/analytics-vidhya/hyperparameter-tuning-an-svm-a-demonstration-using-hyperparameter-tuning-cross-validation-on-96b05db54e5b#:~:text=What%20is%20hyperparameter%20tuning%20%3F,of%20decrease%20them%20for%20ex.
+# Link for Random Forest: https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+# Tips:                   developer.spotify.com/documentation/web-api/reference/#/operations/get-track
+# Link for Decision Tree: https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeRegressor.html
+# Tips:                   https://www.kaggle.com/code/gauravduttakiit/hyperparameter-tuning-in-decision-trees/notebook
+# Link for Logistic Regression: https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html
+# Tips:                         https://machinelearningmastery.com/hyperparameters-for-classification-machine-learning-algorithms/
 
-def define_param_grid(ngram, alpha):
-    """
-    Creates a dictionary of the range of ngram values and alpha values you want to take in consideration.
-    Params:
-    - ngram: int. Returns a list of ranges of ngram in tuples: (1, 1) up to (1, ngram)
-    - alpha: int. Returns a list of ranges of alpha in tuples: 0.001 to 10^alpha in steps of 10^-3
-    """
-    #ngram range for hyperparameter tuning
+def define_param_grid(model, ngram):
+
+    # Get the model chosen from the pipe
+    model_chosen = define_pipeline(model)['model']
+
+    # N-gram range for hyperparameter tuning
     vect__ngram_range = []
     for i in range(ngram):
         vect__ngram_range.append((1,i+1))
-    #alpha range for hyperparameter tuning
-    model__alpha = [10 ** - (x*3) for x in range(1, alpha + 1)]
-    #create dictionary of model grid parameters
-    model_grid_parameters = {
-    'vect__ngram_range': vect__ngram_range,
-    'model__alpha': model__alpha
-}
-    return model_grid_parameters
-    
 
+    # Get parameter grid according to the model chosen
+    if model_chosen == mr_naivebayes:
+        parameters = {
+    'vect__ngram_range': vect__ngram_range,
+    'model__alpha': [10 ** -x for x in range(1, 10)],
+    }
+
+    if model_chosen == sgd or model_chosen == sgd_multiclass:
+        parameters = {
+    'vect__ngram_range': vect__ngram_range,
+    'model__alpha': [10 ** -x for x in range(1, 10)],
+    'model__loss': list('hinge', 'log_loss', 'log', 'modified_huber', 
+                    'squared_hinge', 'perceptron', 'squared_error', 
+                    'huber', 'epsilon_insensitive', 'squared_epsilon_insensitive'),
+    'model__penalty': list('l2', 'l1', 'elasticnet'),
+    'model__fit_intercept': [True, False],
+    }
+
+    if model_chosen == knn:
+        parameters = {
+    'vect__ngram_range': vect__ngram_range,
+    'model__leaf_size': list(range(1, 50)),
+    'model__n_neighbors': list(range(1, 30)),
+    'model__algorithm': ['auto', 'ball_tree', 'kd_tree', 'brute'],
+    'model__weights': ['uniform', 'distance'],
+    'model__p': [1, 2],
+    }
+
+    if model_chosen == svm:
+        parameters = {
+    'vect__ngram_range': vect__ngram_range,
+    'model__gamma': [0.1, 1.0, 10, 100, 1000],
+    'model__C': [0.1, 1.0, 10, 100, 1000],
+    'model__kernel': ['linear', 'poly', 'rbf', 'sigmoid', 'precomputed'], 
+    }
+
+    if model_chosen == rf:
+        parameters = {
+    'vect__ngram_range': vect__ngram_range,        
+    'model__n_estimators': [int(x) for x in np.linspace(start = 200, stop = 2000, num = 10)],
+    'model__max_features': ['auto', 'sqrt'],
+    'model__max_depth': [int(x) for x in np.linspace(10, 110, num = 11)],
+    'model__min_samples_split': [2, 5, 10],
+    'model__min_samples_leaf': [1, 2, 4],
+    'model__bootstrap': [True, False],
+    }
+
+    if model_chosen == dt:
+        parameters = {
+    'vect__ngram_range': vect__ngram_range,        
+    'model__max_depth': [2, 3, 5, 10, 20],
+    'model__min_samples_leaf': [5, 10, 20, 50, 100],
+    'model__criterion': ['squared_error', 'friedman_mse', 'absolute_error', 'poisson'],
+    'model__splitter': ['best', 'random'],
+    'model__max_features': ['auto', 'sqrt', 'log2']
+    }
+
+    if model_chosen == lr:
+        parameters = {
+    'vect__ngram_range': vect__ngram_range, 
+    'model__solvers': ['newton-cg', 'lbfgs', 'liblinear', 'sag', 'saga'],
+    'model__penalty':  ['none', 'l1', 'l2', 'elasticnet'],
+    'model__C': [0.01, 0.1, 1.0, 10, 100],        
+    }
+
+    return parameters
+
+
+### In case we only want simple hyperparamter tuning for SGD and NB only:
+
+# def define_param_grid(ngram, alpha):
+#     """
+#     Creates a dictionary of the range of ngram values and alpha values you want to take in consideration.
+#     Params:
+#     - ngram: int. Returns a list of ranges of ngram in tuples: (1, 1) up to (1, ngram)
+#     - alpha: int. Returns a list of ranges of alpha in tuples: 0.001 to 10^alpha in steps of 10^-3
+#     """
+#     #ngram range for hyperparameter tuning
+#     vect__ngram_range = []
+#     for i in range(ngram):
+#         vect__ngram_range.append((1,i+1))
+#     #alpha range for hyperparameter tuning
+#     model__alpha = [10 ** - (x*3) for x in range(1, alpha + 1)]
+#     #create dictionary of model grid parameters
+#     parameters = {
+#     'vect__ngram_range': vect__ngram_range,
+#     'model__alpha': model__alpha
+# }
+#     return parameters
+    
 def define_gridsearch(model: object, param_grid: dict, scorer = "accuracy"):
     pipe = define_pipeline(model)
     grid = GridSearchCV(pipe, param_grid, cv = 5, scoring = scorer, return_train_score = True)
