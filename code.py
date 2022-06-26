@@ -88,7 +88,7 @@ def define_param_grid(ngram, alpha):
     return model_grid_parameters
     
 
-def define_gridsearch(model: object, param_grid: object, scorer = "accuracy"):
+def define_gridsearch(model: object, param_grid: dict, scorer = "accuracy"):
     pipe = define_pipeline(model)
     grid = GridSearchCV(pipe, param_grid, cv = 5, scoring = scorer, return_train_score = True)
     return grid
