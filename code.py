@@ -135,7 +135,7 @@ def define_param_grid(model: object, ngram: int):
     'model__fit_intercept': [True, False],
     }
 
-    if model_chosen == knn:
+    elif model_chosen == knn:
         parameters = {
     'vect__ngram_range': vect__ngram_range,
     'model__leaf_size': [range(1, 50)],
@@ -145,7 +145,7 @@ def define_param_grid(model: object, ngram: int):
     'model__p': [1, 2],
     }
 
-    if model_chosen == svm:
+    elif model_chosen == svm:
         parameters = {
     'vect__ngram_range': vect__ngram_range,
     'model__gamma': [0.1, 1.0, 10, 100, 1000],
@@ -153,7 +153,7 @@ def define_param_grid(model: object, ngram: int):
     'model__kernel': ['linear', 'poly', 'rbf', 'sigmoid', 'precomputed'], 
     }
 
-    if model_chosen == rf:
+    elif model_chosen == rf:
         parameters = {
     'vect__ngram_range': vect__ngram_range,        
     'model__n_estimators': [int(x) for x in np.linspace(start = 200, stop = 2000, num = 10)],
@@ -164,7 +164,7 @@ def define_param_grid(model: object, ngram: int):
     'model__bootstrap': [True, False],
     }
 
-    if model_chosen == dt:
+    elif model_chosen == dt:
         parameters = {
     'vect__ngram_range': vect__ngram_range,        
     'model__max_depth': [2, 3, 5, 10, 20],
@@ -174,7 +174,7 @@ def define_param_grid(model: object, ngram: int):
     'model__max_features': ['auto', 'sqrt', 'log2']
     }
 
-    if model_chosen == lr:
+    elif model_chosen == lr:
         parameters = {
     'vect__ngram_range': vect__ngram_range, 
     'model__solvers': ['newton-cg', 'lbfgs', 'liblinear', 'sag', 'saga'],
