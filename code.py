@@ -112,12 +112,10 @@ def define_param_grid(model: object, ngram: int):
     # Get the model chosen from the pipe
     model_chosen = define_pipeline(model)['model']
 
-    # # N-gram range for hyperparameter tuning
-    # vect__ngram_range = []
-    # for i in range(ngram):
-    #     vect__ngram_range.append((1,i+1))
-
-    vect__ngram_range = [(1, ngram)]
+    # N-gram range for hyperparameter tuning
+    vect__ngram_range = []
+    for i in range(ngram):
+        vect__ngram_range.append((1,i+1))
 
     # Get parameter grid according to the model chosen
     if model_chosen == mr_naivebayes:
@@ -430,31 +428,6 @@ if __name__ == "__main__":
         'model__alpha': [(1e-9)]
         }    
 
-############################################################                   #################################################################
-############################################################   THE STRUCTURE   #################################################################
-############################################################                   #################################################################
-
-    # Scope: Define model (w/ Hyperparameters) -> Switch around 'model' and put 'ngram' as high as you can to evaluate best estimators per model.
-     
-    # Method: Choose ngram == X. The higher you go the longer it will take. 3 ngrams should suffice ?
-
-    #               1. mr_naivebayes (Get best estimator for this)
-    #               2. sgd (Get best estimator for this)
-    #               3. knn (Same)
-    #               4. svm (Same)
-    #               5. rf (Same)
-    #               6. dt (Same)
-    #               7. lr (Same)
-
-    # Result: Choose the best model.
-
-############################################################                   #################################################################
-############################################################  END OF STRUCTURE #################################################################
-############################################################                   #################################################################
-
-    ### Example of how to define the param_grid using the function Chris created
-    # param_grid = define_param_grid(model = sgd, ngram = 2)
-
     grid = define_gridsearch(model = sgd, param_grid = param_grid, scorer = "accuracy")
     
     #Create reporting data
@@ -533,3 +506,75 @@ if __name__ == "__main__":
     #looking at the learning curve
     print("\n Learning curve of models \n")
     show_multiclasslearning_curve()
+
+    ####### Hyperparameter tuning and ngram models ######
+
+    #Define Multinomial Naive Bayes model
+    param_grid = define_param_grid(model = mr_naivebayes, ngram = 3)
+
+    grid = define_gridsearch(model = sgd, param_grid = param_grid, scorer = "accuracy")
+    
+    #Create reporting data
+    report_dict = apply_modelling(grid, train, test)
+    report_dict = create_learningcurve(train, test, grid.best_estimator_, accuracy_score, report_dict) #can choose any estimator; don't have to choose best_estimator here
+
+    #Saving the results of the testing into 
+    df = pd.DataFrame(report_dict) 
+    df.to_csv (r"./06_Session 6 - NLP/Advanced_AI_NLP/NB_tuned_test_series_data.csv",index = False, header=True)
+
+    ##Analysis##
+
+    #looking at the performance of the different hyperparameters in the gridsearch
+    print("CV report for each target")
+    show_cv_report()
+
+    #Looking at the classification report of the best estimator
+    print("Classification reports of best estimators")
+    show_classification_report()
+
+    #Looking at the parameters of the best estimator
+    print("Parameters of best estimators")
+    show_best_estimator()
+
+    #Look at word weights
+    print("Word weights of best estimators for each target")
+    show_word_weights()
+
+    #looking at the learning curve
+    print("Leanring curve of models")
+    show_learning_curve()
+
+    #Define Stochastic Gradient Descent model
+    param_grid = define_param_grid(model = mr_naivebayes, ngram = 3)
+
+    grid = define_gridsearch(model = sgd, param_grid = param_grid, scorer = "accuracy")
+    
+    #Create reporting data
+    report_dict = apply_modelling(grid, train, test)
+    report_dict = create_learningcurve(train, test, grid.best_estimator_, accuracy_score, report_dict) #can choose any estimator; don't have to choose best_estimator here
+
+    #Saving the results of the testing into 
+    df = pd.DataFrame(report_dict) 
+    df.to_csv (r"./06_Session 6 - NLP/Advanced_AI_NLP/NB_tuned_test_series_data.csv",index = False, header=True)
+
+    ##Analysis##
+
+    #looking at the performance of the different hyperparameters in the gridsearch
+    print("CV report for each target")
+    show_cv_report()
+
+    #Looking at the classification report of the best estimator
+    print("Classification reports of best estimators")
+    show_classification_report()
+
+    #Looking at the parameters of the best estimator
+    print("Parameters of best estimators")
+    show_best_estimator()
+
+    #Look at word weights
+    print("Word weights of best estimators for each target")
+    show_word_weights()
+
+    #looking at the learning curve
+    print("Leanring curve of models")
+    show_learning_curve()
