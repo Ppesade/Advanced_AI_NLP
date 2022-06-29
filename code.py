@@ -115,7 +115,7 @@ def define_param_grid(model: object, ngram: int):
     # N-gram range for hyperparameter tuning
     vect__ngram_range = []
     for i in range(ngram):
-        vect__ngram_range.append((1,i+1))
+        vect__ngram_range.append((i+1, i+1))
 
     # Get parameter grid according to the model chosen
     if model_chosen == mr_naivebayes:
