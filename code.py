@@ -185,29 +185,6 @@ def define_param_grid(model: object, ngram: int):
     }
 
     return parameters
-
-
-### In case we only want simple hyperparamter tuning for SGD and NB only:
-
-# def define_param_grid(ngram, alpha):
-#     """
-#     Creates a dictionary of the range of ngram values and alpha values you want to take in consideration.
-#     Params:
-#     - ngram: int. Returns a list of ranges of ngram in tuples: (1, 1) up to (1, ngram)
-#     - alpha: int. Returns a list of ranges of alpha in tuples: 0.001 to 10^alpha in steps of 10^-3
-#     """
-#     #ngram range for hyperparameter tuning
-#     vect__ngram_range = []
-#     for i in range(ngram):
-#         vect__ngram_range.append((1,i+1))
-#     #alpha range for hyperparameter tuning
-#     model__alpha = [10 ** - (x*3) for x in range(1, alpha + 1)]
-#     #create dictionary of model grid parameters
-#     parameters = {
-#     'vect__ngram_range': vect__ngram_range,
-#     'model__alpha': model__alpha
-# }
-#     return parameters
     
 def define_gridsearch(model: object, param_grid: dict, scorer = "accuracy"):
     pipe = define_pipeline(model)
