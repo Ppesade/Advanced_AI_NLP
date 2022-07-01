@@ -1,0 +1,17 @@
+Parameters of best estimators
+
+ Parameters of best estimator for science
+
+{'model__alpha': 1e-05, 'vect__ngram_range': (1, 2)}
+
+ Parameters of best estimator for sports
+
+{'model__alpha': 1e-05, 'vect__ngram_range': (1, 2)}
+
+ Parameters of best estimator for world
+
+{'model__alpha': 1e-05, 'vect__ngram_range': (1, 3)}
+
+ Parameters of best estimator for business
+
+{'model__alpha': 1e-05, 'vect__ngram_range': (1, 2)}

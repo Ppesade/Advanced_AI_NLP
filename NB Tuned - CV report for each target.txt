@@ -1,0 +1,573 @@
+CV report for each target
+
+ CV report for science
+
+   param_model__alpha param_vect__ngram_range  \
+21            0.00001                  (1, 2)   
+22            0.00001                  (1, 3)   
+23            0.00001                  (1, 4)   
+28           0.000001                  (1, 4)   
+29           0.000001                  (1, 5)   
+27           0.000001                  (1, 3)   
+24            0.00001                  (1, 5)   
+20            0.00001                  (1, 1)   
+26           0.000001                  (1, 2)   
+33                0.0                  (1, 4)   
+34                0.0                  (1, 5)   
+32                0.0                  (1, 3)   
+38                0.0                  (1, 4)   
+37                0.0                  (1, 3)   
+43                0.0                  (1, 4)   
+39                0.0                  (1, 5)   
+42                0.0                  (1, 3)   
+31                0.0                  (1, 2)   
+36                0.0                  (1, 2)   
+44                0.0                  (1, 5)   
+41                0.0                  (1, 2)   
+25           0.000001                  (1, 1)   
+15             0.0001                  (1, 1)   
+30                0.0                  (1, 1)   
+35                0.0                  (1, 1)   
+40                0.0                  (1, 1)   
+16             0.0001                  (1, 2)   
+17             0.0001                  (1, 3)   
+18             0.0001                  (1, 4)   
+19             0.0001                  (1, 5)   
+10              0.001                  (1, 1)   
+11              0.001                  (1, 2)   
+12              0.001                  (1, 3)   
+13              0.001                  (1, 4)   
+14              0.001                  (1, 5)   
+2                 0.1                  (1, 3)   
+1                 0.1                  (1, 2)   
+3                 0.1                  (1, 4)   
+8                0.01                  (1, 4)   
+5                0.01                  (1, 1)   
+6                0.01                  (1, 2)   
+7                0.01                  (1, 3)   
+9                0.01                  (1, 5)   
+4                 0.1                  (1, 5)   
+0                 0.1                  (1, 1)   
+
+                                               params  mean_test_score  \
+21  {'model__alpha': 1e-05, 'vect__ngram_range': (...         0.943554   
+22  {'model__alpha': 1e-05, 'vect__ngram_range': (...         0.942890   
+23  {'model__alpha': 1e-05, 'vect__ngram_range': (...         0.941681   
+28  {'model__alpha': 1e-06, 'vect__ngram_range': (...         0.941618   
+29  {'model__alpha': 1e-06, 'vect__ngram_range': (...         0.941509   
+27  {'model__alpha': 1e-06, 'vect__ngram_range': (...         0.941227   
+24  {'model__alpha': 1e-05, 'vect__ngram_range': (...         0.940945   
+20  {'model__alpha': 1e-05, 'vect__ngram_range': (...         0.939045   
+26  {'model__alpha': 1e-06, 'vect__ngram_range': (...         0.938518   
+33  {'model__alpha': 1e-07, 'vect__ngram_range': (...         0.937527   
+34  {'model__alpha': 1e-07, 'vect__ngram_range': (...         0.937218   
+32  {'model__alpha': 1e-07, 'vect__ngram_range': (...         0.937127   
+38  {'model__alpha': 1e-08, 'vect__ngram_range': (...         0.936081   
+37  {'model__alpha': 1e-08, 'vect__ngram_range': (...         0.935063   
+43  {'model__alpha': 1e-09, 'vect__ngram_range': (...         0.934763   
+39  {'model__alpha': 1e-08, 'vect__ngram_range': (...         0.934745   
+42  {'model__alpha': 1e-09, 'vect__ngram_range': (...         0.934199   
+31  {'model__alpha': 1e-07, 'vect__ngram_range': (...         0.934063   
+36  {'model__alpha': 1e-08, 'vect__ngram_range': (...         0.933154   
+44  {'model__alpha': 1e-09, 'vect__ngram_range': (...         0.933027   
+41  {'model__alpha': 1e-09, 'vect__ngram_range': (...         0.932899   
+25  {'model__alpha': 1e-06, 'vect__ngram_range': (...         0.926818   
+15  {'model__alpha': 0.0001, 'vect__ngram_range': ...         0.924581   
+30  {'model__alpha': 1e-07, 'vect__ngram_range': (...         0.917636   
+35  {'model__alpha': 1e-08, 'vect__ngram_range': (...         0.916008   
+40  {'model__alpha': 1e-09, 'vect__ngram_range': (...         0.915390   
+16  {'model__alpha': 0.0001, 'vect__ngram_range': ...         0.914636   
+17  {'model__alpha': 0.0001, 'vect__ngram_range': ...         0.903063   
+18  {'model__alpha': 0.0001, 'vect__ngram_range': ...         0.892744   
+19  {'model__alpha': 0.0001, 'vect__ngram_range': ...         0.881744   
+10  {'model__alpha': 0.001, 'vect__ngram_range': (...         0.822989   
+11  {'model__alpha': 0.001, 'vect__ngram_range': (...         0.757489   
+12  {'model__alpha': 0.001, 'vect__ngram_range': (...         0.753670   
+13  {'model__alpha': 0.001, 'vect__ngram_range': (...         0.753207   
+14  {'model__alpha': 0.001, 'vect__ngram_range': (...         0.752680   
+2   {'model__alpha': 0.1, 'vect__ngram_range': (1,...         0.750343   
+1   {'model__alpha': 0.1, 'vect__ngram_range': (1,...         0.750343   
+3   {'model__alpha': 0.1, 'vect__ngram_range': (1,...         0.750343   
+8   {'model__alpha': 0.01, 'vect__ngram_range': (1...         0.750343   
+5   {'model__alpha': 0.01, 'vect__ngram_range': (1...         0.750343   
+6   {'model__alpha': 0.01, 'vect__ngram_range': (1...         0.750343   
+7   {'model__alpha': 0.01, 'vect__ngram_range': (1...         0.750343   
+9   {'model__alpha': 0.01, 'vect__ngram_range': (1...         0.750343   
+4   {'model__alpha': 0.1, 'vect__ngram_range': (1,...         0.750343   
+0   {'model__alpha': 0.1, 'vect__ngram_range': (1,...         0.750343   
+
+    rank_test_score  
+21                1  
+22                2  
+23                3  
+28                4  
+29                5  
+27                6  
+24                7  
+20                8  
+26                9  
+33               10  
+34               11  
+32               12  
+38               13  
+37               14  
+43               15  
+39               16  
+42               17  
+31               18  
+36               19  
+44               20  
+41               21  
+25               22  
+15               23  
+30               24  
+35               25  
+40               26  
+16               27  
+17               28  
+18               29  
+19               30  
+10               31  
+11               32  
+12               33  
+13               34  
+14               35  
+2                36  
+1                36  
+3                36  
+8                36  
+5                36  
+6                36  
+7                36  
+9                36  
+4                36  
+0                36  
+
+ CV report for sports
+
+   param_model__alpha param_vect__ngram_range  \
+21            0.00001                  (1, 2)   
+22            0.00001                  (1, 3)   
+20            0.00001                  (1, 1)   
+23            0.00001                  (1, 4)   
+27           0.000001                  (1, 3)   
+26           0.000001                  (1, 2)   
+28           0.000001                  (1, 4)   
+29           0.000001                  (1, 5)   
+24            0.00001                  (1, 5)   
+33                0.0                  (1, 4)   
+32                0.0                  (1, 3)   
+31                0.0                  (1, 2)   
+34                0.0                  (1, 5)   
+38                0.0                  (1, 4)   
+36                0.0                  (1, 2)   
+37                0.0                  (1, 3)   
+42                0.0                  (1, 3)   
+41                0.0                  (1, 2)   
+25           0.000001                  (1, 1)   
+44                0.0                  (1, 5)   
+43                0.0                  (1, 4)   
+15             0.0001                  (1, 1)   
+39                0.0                  (1, 5)   
+16             0.0001                  (1, 2)   
+30                0.0                  (1, 1)   
+35                0.0                  (1, 1)   
+40                0.0                  (1, 1)   
+17             0.0001                  (1, 3)   
+18             0.0001                  (1, 4)   
+19             0.0001                  (1, 5)   
+10              0.001                  (1, 1)   
+11              0.001                  (1, 2)   
+12              0.001                  (1, 3)   
+13              0.001                  (1, 4)   
+1                 0.1                  (1, 2)   
+2                 0.1                  (1, 3)   
+3                 0.1                  (1, 4)   
+8                0.01                  (1, 4)   
+5                0.01                  (1, 1)   
+6                0.01                  (1, 2)   
+7                0.01                  (1, 3)   
+9                0.01                  (1, 5)   
+14              0.001                  (1, 5)   
+4                 0.1                  (1, 5)   
+0                 0.1                  (1, 1)   
+
+                                               params  mean_test_score  \
+21  {'model__alpha': 1e-05, 'vect__ngram_range': (...         0.983563   
+22  {'model__alpha': 1e-05, 'vect__ngram_range': (...         0.982700   
+20  {'model__alpha': 1e-05, 'vect__ngram_range': (...         0.982473   
+23  {'model__alpha': 1e-05, 'vect__ngram_range': (...         0.981600   
+27  {'model__alpha': 1e-06, 'vect__ngram_range': (...         0.981573   
+26  {'model__alpha': 1e-06, 'vect__ngram_range': (...         0.981209   
+28  {'model__alpha': 1e-06, 'vect__ngram_range': (...         0.981200   
+29  {'model__alpha': 1e-06, 'vect__ngram_range': (...         0.980918   
+24  {'model__alpha': 1e-05, 'vect__ngram_range': (...         0.980309   
+33  {'model__alpha': 1e-07, 'vect__ngram_range': (...         0.978736   
+32  {'model__alpha': 1e-07, 'vect__ngram_range': (...         0.978718   
+31  {'model__alpha': 1e-07, 'vect__ngram_range': (...         0.978300   
+34  {'model__alpha': 1e-07, 'vect__ngram_range': (...         0.977863   
+38  {'model__alpha': 1e-08, 'vect__ngram_range': (...         0.977618   
+36  {'model__alpha': 1e-08, 'vect__ngram_range': (...         0.977545   
+37  {'model__alpha': 1e-08, 'vect__ngram_range': (...         0.977382   
+42  {'model__alpha': 1e-09, 'vect__ngram_range': (...         0.977373   
+41  {'model__alpha': 1e-09, 'vect__ngram_range': (...         0.977300   
+25  {'model__alpha': 1e-06, 'vect__ngram_range': (...         0.977009   
+44  {'model__alpha': 1e-09, 'vect__ngram_range': (...         0.976573   
+43  {'model__alpha': 1e-09, 'vect__ngram_range': (...         0.975672   
+15  {'model__alpha': 0.0001, 'vect__ngram_range': ...         0.975636   
+39  {'model__alpha': 1e-08, 'vect__ngram_range': (...         0.975363   
+16  {'model__alpha': 0.0001, 'vect__ngram_range': ...         0.972072   
+30  {'model__alpha': 1e-07, 'vect__ngram_range': (...         0.970409   
+35  {'model__alpha': 1e-08, 'vect__ngram_range': (...         0.970209   
+40  {'model__alpha': 1e-09, 'vect__ngram_range': (...         0.969291   
+17  {'model__alpha': 0.0001, 'vect__ngram_range': ...         0.969100   
+18  {'model__alpha': 0.0001, 'vect__ngram_range': ...         0.966327   
+19  {'model__alpha': 0.0001, 'vect__ngram_range': ...         0.963445   
+10  {'model__alpha': 0.001, 'vect__ngram_range': (...         0.913181   
+11  {'model__alpha': 0.001, 'vect__ngram_range': (...         0.774480   
+12  {'model__alpha': 0.001, 'vect__ngram_range': (...         0.750234   
+13  {'model__alpha': 0.001, 'vect__ngram_range': (...         0.749661   
+1   {'model__alpha': 0.1, 'vect__ngram_range': (1,...         0.749616   
+2   {'model__alpha': 0.1, 'vect__ngram_range': (1,...         0.749616   
+3   {'model__alpha': 0.1, 'vect__ngram_range': (1,...         0.749616   
+8   {'model__alpha': 0.01, 'vect__ngram_range': (1...         0.749616   
+5   {'model__alpha': 0.01, 'vect__ngram_range': (1...         0.749616   
+6   {'model__alpha': 0.01, 'vect__ngram_range': (1...         0.749616   
+7   {'model__alpha': 0.01, 'vect__ngram_range': (1...         0.749616   
+9   {'model__alpha': 0.01, 'vect__ngram_range': (1...         0.749616   
+14  {'model__alpha': 0.001, 'vect__ngram_range': (...         0.749616   
+4   {'model__alpha': 0.1, 'vect__ngram_range': (1,...         0.749616   
+0   {'model__alpha': 0.1, 'vect__ngram_range': (1,...         0.749616   
+
+    rank_test_score  
+21                1  
+22                2  
+20                3  
+23                4  
+27                5  
+26                6  
+28                7  
+29                8  
+24                9  
+33               10  
+32               11  
+31               12  
+34               13  
+38               14  
+36               15  
+37               16  
+42               17  
+41               18  
+25               19  
+44               20  
+43               21  
+15               22  
+39               23  
+16               24  
+30               25  
+35               26  
+40               27  
+17               28  
+18               29  
+19               30  
+10               31  
+11               32  
+12               33  
+13               34  
+1                35  
+2                35  
+3                35  
+8                35  
+5                35  
+6                35  
+7                35  
+9                35  
+14               35  
+4                35  
+0                35  
+
+ CV report for world
+
+   param_model__alpha param_vect__ngram_range  \
+22            0.00001                  (1, 3)   
+21            0.00001                  (1, 2)   
+23            0.00001                  (1, 4)   
+24            0.00001                  (1, 5)   
+28           0.000001                  (1, 4)   
+27           0.000001                  (1, 3)   
+29           0.000001                  (1, 5)   
+20            0.00001                  (1, 1)   
+26           0.000001                  (1, 2)   
+33                0.0                  (1, 4)   
+34                0.0                  (1, 5)   
+32                0.0                  (1, 3)   
+37                0.0                  (1, 3)   
+44                0.0                  (1, 5)   
+43                0.0                  (1, 4)   
+39                0.0                  (1, 5)   
+42                0.0                  (1, 3)   
+38                0.0                  (1, 4)   
+31                0.0                  (1, 2)   
+36                0.0                  (1, 2)   
+41                0.0                  (1, 2)   
+15             0.0001                  (1, 1)   
+25           0.000001                  (1, 1)   
+16             0.0001                  (1, 2)   
+40                0.0                  (1, 1)   
+30                0.0                  (1, 1)   
+35                0.0                  (1, 1)   
+17             0.0001                  (1, 3)   
+18             0.0001                  (1, 4)   
+19             0.0001                  (1, 5)   
+10              0.001                  (1, 1)   
+11              0.001                  (1, 2)   
+12              0.001                  (1, 3)   
+1                 0.1                  (1, 2)   
+14              0.001                  (1, 5)   
+5                0.01                  (1, 1)   
+3                 0.1                  (1, 4)   
+4                 0.1                  (1, 5)   
+13              0.001                  (1, 4)   
+6                0.01                  (1, 2)   
+7                0.01                  (1, 3)   
+8                0.01                  (1, 4)   
+9                0.01                  (1, 5)   
+2                 0.1                  (1, 3)   
+0                 0.1                  (1, 1)   
+
+                                               params  mean_test_score  \
+22  {'model__alpha': 1e-05, 'vect__ngram_range': (...         0.956772   
+21  {'model__alpha': 1e-05, 'vect__ngram_range': (...         0.956727   
+23  {'model__alpha': 1e-05, 'vect__ngram_range': (...         0.955709   
+24  {'model__alpha': 1e-05, 'vect__ngram_range': (...         0.954300   
+28  {'model__alpha': 1e-06, 'vect__ngram_range': (...         0.954100   
+27  {'model__alpha': 1e-06, 'vect__ngram_range': (...         0.953890   
+29  {'model__alpha': 1e-06, 'vect__ngram_range': (...         0.953536   
+20  {'model__alpha': 1e-05, 'vect__ngram_range': (...         0.953200   
+26  {'model__alpha': 1e-06, 'vect__ngram_range': (...         0.952300   
+33  {'model__alpha': 1e-07, 'vect__ngram_range': (...         0.951081   
+34  {'model__alpha': 1e-07, 'vect__ngram_range': (...         0.950963   
+32  {'model__alpha': 1e-07, 'vect__ngram_range': (...         0.950663   
+37  {'model__alpha': 1e-08, 'vect__ngram_range': (...         0.949472   
+44  {'model__alpha': 1e-09, 'vect__ngram_range': (...         0.949263   
+43  {'model__alpha': 1e-09, 'vect__ngram_range': (...         0.949181   
+39  {'model__alpha': 1e-08, 'vect__ngram_range': (...         0.948754   
+42  {'model__alpha': 1e-09, 'vect__ngram_range': (...         0.948727   
+38  {'model__alpha': 1e-08, 'vect__ngram_range': (...         0.948527   
+31  {'model__alpha': 1e-07, 'vect__ngram_range': (...         0.947972   
+36  {'model__alpha': 1e-08, 'vect__ngram_range': (...         0.947345   
+41  {'model__alpha': 1e-09, 'vect__ngram_range': (...         0.946945   
+15  {'model__alpha': 0.0001, 'vect__ngram_range': ...         0.943099   
+25  {'model__alpha': 1e-06, 'vect__ngram_range': (...         0.941899   
+16  {'model__alpha': 0.0001, 'vect__ngram_range': ...         0.936072   
+40  {'model__alpha': 1e-09, 'vect__ngram_range': (...         0.932672   
+30  {'model__alpha': 1e-07, 'vect__ngram_range': (...         0.932354   
+35  {'model__alpha': 1e-08, 'vect__ngram_range': (...         0.930854   
+17  {'model__alpha': 0.0001, 'vect__ngram_range': ...         0.930808   
+18  {'model__alpha': 0.0001, 'vect__ngram_range': ...         0.926599   
+19  {'model__alpha': 0.0001, 'vect__ngram_range': ...         0.922263   
+10  {'model__alpha': 0.001, 'vect__ngram_range': (...         0.872526   
+11  {'model__alpha': 0.001, 'vect__ngram_range': (...         0.774434   
+12  {'model__alpha': 0.001, 'vect__ngram_range': (...         0.750598   
+1   {'model__alpha': 0.1, 'vect__ngram_range': (1,...         0.750080   
+14  {'model__alpha': 0.001, 'vect__ngram_range': (...         0.750080   
+5   {'model__alpha': 0.01, 'vect__ngram_range': (1...         0.750080   
+3   {'model__alpha': 0.1, 'vect__ngram_range': (1,...         0.750080   
+4   {'model__alpha': 0.1, 'vect__ngram_range': (1,...         0.750080   
+13  {'model__alpha': 0.001, 'vect__ngram_range': (...         0.750080   
+6   {'model__alpha': 0.01, 'vect__ngram_range': (1...         0.750080   
+7   {'model__alpha': 0.01, 'vect__ngram_range': (1...         0.750080   
+8   {'model__alpha': 0.01, 'vect__ngram_range': (1...         0.750080   
+9   {'model__alpha': 0.01, 'vect__ngram_range': (1...         0.750080   
+2   {'model__alpha': 0.1, 'vect__ngram_range': (1,...         0.750080   
+0   {'model__alpha': 0.1, 'vect__ngram_range': (1,...         0.750080   
+
+    rank_test_score  
+22                1  
+21                2  
+23                3  
+24                4  
+28                5  
+27                6  
+29                7  
+20                8  
+26                9  
+33               10  
+34               11  
+32               12  
+37               13  
+44               14  
+43               15  
+39               16  
+42               17  
+38               18  
+31               19  
+36               20  
+41               21  
+15               22  
+25               23  
+16               24  
+40               25  
+30               26  
+35               27  
+17               28  
+18               29  
+19               30  
+10               31  
+11               32  
+12               33  
+1                34  
+14               34  
+5                34  
+3                34  
+4                34  
+13               34  
+6                34  
+7                34  
+8                34  
+9                34  
+2                34  
+0                34  
+
+ CV report for business
+
+   param_model__alpha param_vect__ngram_range  \
+21            0.00001                  (1, 2)   
+22            0.00001                  (1, 3)   
+27           0.000001                  (1, 3)   
+23            0.00001                  (1, 4)   
+20            0.00001                  (1, 1)   
+28           0.000001                  (1, 4)   
+29           0.000001                  (1, 5)   
+24            0.00001                  (1, 5)   
+26           0.000001                  (1, 2)   
+32                0.0                  (1, 3)   
+33                0.0                  (1, 4)   
+34                0.0                  (1, 5)   
+42                0.0                  (1, 3)   
+38                0.0                  (1, 4)   
+37                0.0                  (1, 3)   
+31                0.0                  (1, 2)   
+36                0.0                  (1, 2)   
+41                0.0                  (1, 2)   
+39                0.0                  (1, 5)   
+43                0.0                  (1, 4)   
+44                0.0                  (1, 5)   
+25           0.000001                  (1, 1)   
+15             0.0001                  (1, 1)   
+16             0.0001                  (1, 2)   
+30                0.0                  (1, 1)   
+35                0.0                  (1, 1)   
+40                0.0                  (1, 1)   
+17             0.0001                  (1, 3)   
+18             0.0001                  (1, 4)   
+19             0.0001                  (1, 5)   
+10              0.001                  (1, 1)   
+11              0.001                  (1, 2)   
+12              0.001                  (1, 3)   
+13              0.001                  (1, 4)   
+14              0.001                  (1, 5)   
+1                 0.1                  (1, 2)   
+2                 0.1                  (1, 3)   
+3                 0.1                  (1, 4)   
+9                0.01                  (1, 5)   
+5                0.01                  (1, 1)   
+6                0.01                  (1, 2)   
+7                0.01                  (1, 3)   
+8                0.01                  (1, 4)   
+4                 0.1                  (1, 5)   
+0                 0.1                  (1, 1)   
+
+                                               params  mean_test_score  \
+21  {'model__alpha': 1e-05, 'vect__ngram_range': (...         0.941954   
+22  {'model__alpha': 1e-05, 'vect__ngram_range': (...         0.940881   
+27  {'model__alpha': 1e-06, 'vect__ngram_range': (...         0.939172   
+23  {'model__alpha': 1e-05, 'vect__ngram_range': (...         0.939145   
+20  {'model__alpha': 1e-05, 'vect__ngram_range': (...         0.938545   
+28  {'model__alpha': 1e-06, 'vect__ngram_range': (...         0.938454   
+29  {'model__alpha': 1e-06, 'vect__ngram_range': (...         0.937199   
+24  {'model__alpha': 1e-05, 'vect__ngram_range': (...         0.936963   
+26  {'model__alpha': 1e-06, 'vect__ngram_range': (...         0.936527   
+32  {'model__alpha': 1e-07, 'vect__ngram_range': (...         0.934472   
+33  {'model__alpha': 1e-07, 'vect__ngram_range': (...         0.933009   
+34  {'model__alpha': 1e-07, 'vect__ngram_range': (...         0.932845   
+42  {'model__alpha': 1e-09, 'vect__ngram_range': (...         0.932463   
+38  {'model__alpha': 1e-08, 'vect__ngram_range': (...         0.931590   
+37  {'model__alpha': 1e-08, 'vect__ngram_range': (...         0.931218   
+31  {'model__alpha': 1e-07, 'vect__ngram_range': (...         0.931190   
+36  {'model__alpha': 1e-08, 'vect__ngram_range': (...         0.931136   
+41  {'model__alpha': 1e-09, 'vect__ngram_range': (...         0.930990   
+39  {'model__alpha': 1e-08, 'vect__ngram_range': (...         0.930027   
+43  {'model__alpha': 1e-09, 'vect__ngram_range': (...         0.930008   
+44  {'model__alpha': 1e-09, 'vect__ngram_range': (...         0.929945   
+25  {'model__alpha': 1e-06, 'vect__ngram_range': (...         0.924545   
+15  {'model__alpha': 0.0001, 'vect__ngram_range': ...         0.923345   
+16  {'model__alpha': 0.0001, 'vect__ngram_range': ...         0.914163   
+30  {'model__alpha': 1e-07, 'vect__ngram_range': (...         0.913963   
+35  {'model__alpha': 1e-08, 'vect__ngram_range': (...         0.913163   
+40  {'model__alpha': 1e-09, 'vect__ngram_range': (...         0.912590   
+17  {'model__alpha': 0.0001, 'vect__ngram_range': ...         0.907626   
+18  {'model__alpha': 0.0001, 'vect__ngram_range': ...         0.901617   
+19  {'model__alpha': 0.0001, 'vect__ngram_range': ...         0.896381   
+10  {'model__alpha': 0.001, 'vect__ngram_range': (...         0.847462   
+11  {'model__alpha': 0.001, 'vect__ngram_range': (...         0.778234   
+12  {'model__alpha': 0.001, 'vect__ngram_range': (...         0.763134   
+13  {'model__alpha': 0.001, 'vect__ngram_range': (...         0.762543   
+14  {'model__alpha': 0.001, 'vect__ngram_range': (...         0.762534   
+1   {'model__alpha': 0.1, 'vect__ngram_range': (1,...         0.749961   
+2   {'model__alpha': 0.1, 'vect__ngram_range': (1,...         0.749961   
+3   {'model__alpha': 0.1, 'vect__ngram_range': (1,...         0.749961   
+9   {'model__alpha': 0.01, 'vect__ngram_range': (1...         0.749961   
+5   {'model__alpha': 0.01, 'vect__ngram_range': (1...         0.749961   
+6   {'model__alpha': 0.01, 'vect__ngram_range': (1...         0.749961   
+7   {'model__alpha': 0.01, 'vect__ngram_range': (1...         0.749961   
+8   {'model__alpha': 0.01, 'vect__ngram_range': (1...         0.749961   
+4   {'model__alpha': 0.1, 'vect__ngram_range': (1,...         0.749961   
+0   {'model__alpha': 0.1, 'vect__ngram_range': (1,...         0.749961   
+
+    rank_test_score  
+21                1  
+22                2  
+27                3  
+23                4  
+20                5  
+28                6  
+29                7  
+24                8  
+26                9  
+32               10  
+33               11  
+34               12  
+42               13  
+38               14  
+37               15  
+31               16  
+36               17  
+41               18  
+39               19  
+43               20  
+44               21  
+25               22  
+15               23  
+16               24  
+30               25  
+35               26  
+40               27  
+17               28  
+18               29  
+19               30  
+10               31  
+11               32  
+12               33  
+13               34  
+14               35  
+1                36  
+2                36  
+3                36  
+9                36  
+5                36  
+6                36  
+7                36  
+8                36  
+4                36  
+0                36  

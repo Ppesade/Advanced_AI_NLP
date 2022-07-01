@@ -1,0 +1,48 @@
+Classification reports of best estimators
+
+ Classification report of best estimator for science
+
+              precision    recall  f1-score   support
+
+      others       0.96      0.97      0.96      7463
+     science       0.90      0.87      0.88      2537
+
+    accuracy                           0.94     10000
+   macro avg       0.93      0.92      0.92     10000
+weighted avg       0.94      0.94      0.94     10000
+
+
+ Classification report of best estimator for sports
+
+              precision    recall  f1-score   support
+
+      others       0.99      0.99      0.99      7542
+      sports       0.96      0.98      0.97      2458
+
+    accuracy                           0.99     10000
+   macro avg       0.98      0.98      0.98     10000
+weighted avg       0.99      0.99      0.99     10000
+
+
+ Classification report of best estimator for world
+
+              precision    recall  f1-score   support
+
+      others       0.96      0.98      0.97      7491
+       world       0.94      0.88      0.91      2509
+
+    accuracy                           0.96     10000
+   macro avg       0.95      0.93      0.94     10000
+weighted avg       0.95      0.96      0.95     10000
+
+
+ Classification report of best estimator for business
+
+              precision    recall  f1-score   support
+
+      others       0.95      0.97      0.96      7504
+    business       0.90      0.85      0.87      2496
+
+    accuracy                           0.94     10000
+   macro avg       0.93      0.91      0.92     10000
+weighted avg       0.94      0.94      0.94     10000
