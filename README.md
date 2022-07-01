@@ -6,7 +6,7 @@ Repo for the NLP Assignment in Advanced AI topics
 ## Part 1 - Multinomial Naive Bayes Model with ngram range (1,1) to (1,5) ##
 
 - Link to download .csv file of results for NB Tuned Test Series Data: https://we.tl/t-39aUzMOuR4 (link expires 8th July)
-- Find .txt files to complement the .csv file attached in link above
+- Find .txt files to complement the .csv file attached in link above in folder _NB Tuned_
 
 ## Part 2 - Multinomial Naive Bayes Model with ngram range (1,1) to (5,5) ##
 
