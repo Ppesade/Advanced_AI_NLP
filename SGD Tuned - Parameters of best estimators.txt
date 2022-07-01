@@ -1,0 +1,17 @@
+Parameters of best estimators
+
+ Parameters of best estimator for science
+
+{'model__alpha': 1e-05, 'model__loss': 'hinge', 'model__penalty': 'l2', 'vect__ngram_range': (1, 1)}
+
+ Parameters of best estimator for sports
+
+{'model__alpha': 1e-05, 'model__loss': 'hinge', 'model__penalty': 'l2', 'vect__ngram_range': (1, 1)}
+
+ Parameters of best estimator for world
+
+{'model__alpha': 1e-05, 'model__loss': 'hinge', 'model__penalty': 'l2', 'vect__ngram_range': (1, 1)}
+
+ Parameters of best estimator for business
+
+{'model__alpha': 1e-05, 'model__loss': 'hinge', 'model__penalty': 'l2', 'vect__ngram_range': (1, 1)}
