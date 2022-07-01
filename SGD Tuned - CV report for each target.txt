@@ -1,0 +1,225 @@
+CV report for each target
+
+ CV report for science
+
+    param_model__alpha param_model__loss param_model__penalty  \
+180            0.00001             hinge                   l2   
+190            0.00001             hinge           elasticnet   
+185            0.00001             hinge                   l1   
+265           0.000001               log           elasticnet   
+255           0.000001               log                   l2   
+..                 ...               ...                  ...   
+287                0.0          log_loss                   l2   
+288                0.0          log_loss                   l2   
+289                0.0          log_loss                   l2   
+60                0.01          log_loss                   l2   
+202            0.00001          log_loss                   l1   
+
+    param_vect__ngram_range  \
+180                  (1, 1)   
+190                  (1, 1)   
+185                  (1, 1)   
+265                  (1, 1)   
+255                  (1, 1)   
+..                      ...   
+287                  (3, 3)   
+288                  (4, 4)   
+289                  (5, 5)   
+60                   (1, 1)   
+202                  (3, 3)   
+
+                                                params  mean_test_score  \
+180  {'model__alpha': 1e-05, 'model__loss': 'hinge'...         0.939045   
+190  {'model__alpha': 1e-05, 'model__loss': 'hinge'...         0.938727   
+185  {'model__alpha': 1e-05, 'model__loss': 'hinge'...         0.935527   
+265  {'model__alpha': 1e-06, 'model__loss': 'log', ...         0.934536   
+255  {'model__alpha': 1e-06, 'model__loss': 'log', ...         0.934354   
+..                                                 ...              ...   
+287  {'model__alpha': 1e-07, 'model__loss': 'log_lo...              NaN   
+288  {'model__alpha': 1e-07, 'model__loss': 'log_lo...              NaN   
+289  {'model__alpha': 1e-07, 'model__loss': 'log_lo...              NaN   
+60   {'model__alpha': 0.01, 'model__loss': 'log_los...              NaN   
+202  {'model__alpha': 1e-05, 'model__loss': 'log_lo...              NaN   
+
+     rank_test_score  
+180                1  
+190                2  
+185                3  
+265                4  
+255                5  
+..               ...  
+287              401  
+288              402  
+289              403  
+60               404  
+202              405  
+
+[405 rows x 7 columns]
+
+ CV report for sports
+
+    param_model__alpha param_model__loss param_model__penalty  \
+180            0.00001             hinge                   l2   
+190            0.00001             hinge           elasticnet   
+255           0.000001               log                   l2   
+265           0.000001               log           elasticnet   
+185            0.00001             hinge                   l1   
+..                 ...               ...                  ...   
+287                0.0          log_loss                   l2   
+288                0.0          log_loss                   l2   
+289                0.0          log_loss                   l2   
+60                0.01          log_loss                   l2   
+202            0.00001          log_loss                   l1   
+
+    param_vect__ngram_range  \
+180                  (1, 1)   
+190                  (1, 1)   
+255                  (1, 1)   
+265                  (1, 1)   
+185                  (1, 1)   
+..                      ...   
+287                  (3, 3)   
+288                  (4, 4)   
+289                  (5, 5)   
+60                   (1, 1)   
+202                  (3, 3)   
+
+                                                params  mean_test_score  \
+180  {'model__alpha': 1e-05, 'model__loss': 'hinge'...         0.982473   
+190  {'model__alpha': 1e-05, 'model__loss': 'hinge'...         0.982263   
+255  {'model__alpha': 1e-06, 'model__loss': 'log', ...         0.980182   
+265  {'model__alpha': 1e-06, 'model__loss': 'log', ...         0.979982   
+185  {'model__alpha': 1e-05, 'model__loss': 'hinge'...         0.977827   
+..                                                 ...              ...   
+287  {'model__alpha': 1e-07, 'model__loss': 'log_lo...              NaN   
+288  {'model__alpha': 1e-07, 'model__loss': 'log_lo...              NaN   
+289  {'model__alpha': 1e-07, 'model__loss': 'log_lo...              NaN   
+60   {'model__alpha': 0.01, 'model__loss': 'log_los...              NaN   
+202  {'model__alpha': 1e-05, 'model__loss': 'log_lo...              NaN   
+
+     rank_test_score  
+180                1  
+190                2  
+255                3  
+265                4  
+185                5  
+..               ...  
+287              401  
+288              402  
+289              403  
+60               404  
+202              405  
+
+[405 rows x 7 columns]
+
+ CV report for world
+
+    param_model__alpha param_model__loss param_model__penalty  \
+180            0.00001             hinge                   l2   
+190            0.00001             hinge           elasticnet   
+185            0.00001             hinge                   l1   
+210            0.00001               log                   l2   
+265           0.000001               log           elasticnet   
+..                 ...               ...                  ...   
+287                0.0          log_loss                   l2   
+288                0.0          log_loss                   l2   
+289                0.0          log_loss                   l2   
+60                0.01          log_loss                   l2   
+202            0.00001          log_loss                   l1   
+
+    param_vect__ngram_range  \
+180                  (1, 1)   
+190                  (1, 1)   
+185                  (1, 1)   
+210                  (1, 1)   
+265                  (1, 1)   
+..                      ...   
+287                  (3, 3)   
+288                  (4, 4)   
+289                  (5, 5)   
+60                   (1, 1)   
+202                  (3, 3)   
+
+                                                params  mean_test_score  \
+180  {'model__alpha': 1e-05, 'model__loss': 'hinge'...         0.953200   
+190  {'model__alpha': 1e-05, 'model__loss': 'hinge'...         0.952990   
+185  {'model__alpha': 1e-05, 'model__loss': 'hinge'...         0.949336   
+210  {'model__alpha': 1e-05, 'model__loss': 'log', ...         0.948818   
+265  {'model__alpha': 1e-06, 'model__loss': 'log', ...         0.948372   
+..                                                 ...              ...   
+287  {'model__alpha': 1e-07, 'model__loss': 'log_lo...              NaN   
+288  {'model__alpha': 1e-07, 'model__loss': 'log_lo...              NaN   
+289  {'model__alpha': 1e-07, 'model__loss': 'log_lo...              NaN   
+60   {'model__alpha': 0.01, 'model__loss': 'log_los...              NaN   
+202  {'model__alpha': 1e-05, 'model__loss': 'log_lo...              NaN   
+
+     rank_test_score  
+180                1  
+190                2  
+185                3  
+210                4  
+265                5  
+..               ...  
+287              401  
+288              402  
+289              403  
+60               404  
+202              405  
+
+[405 rows x 7 columns]
+
+ CV report for business
+
+    param_model__alpha param_model__loss param_model__penalty  \
+180            0.00001             hinge                   l2   
+190            0.00001             hinge           elasticnet   
+185            0.00001             hinge                   l1   
+255           0.000001               log                   l2   
+265           0.000001               log           elasticnet   
+..                 ...               ...                  ...   
+287                0.0          log_loss                   l2   
+288                0.0          log_loss                   l2   
+289                0.0          log_loss                   l2   
+60                0.01          log_loss                   l2   
+202            0.00001          log_loss                   l1   
+
+    param_vect__ngram_range  \
+180                  (1, 1)   
+190                  (1, 1)   
+185                  (1, 1)   
+255                  (1, 1)   
+265                  (1, 1)   
+..                      ...   
+287                  (3, 3)   
+288                  (4, 4)   
+289                  (5, 5)   
+60                   (1, 1)   
+202                  (3, 3)   
+
+                                                params  mean_test_score  \
+180  {'model__alpha': 1e-05, 'model__loss': 'hinge'...         0.938545   
+190  {'model__alpha': 1e-05, 'model__loss': 'hinge'...         0.937590   
+185  {'model__alpha': 1e-05, 'model__loss': 'hinge'...         0.934218   
+255  {'model__alpha': 1e-06, 'model__loss': 'log', ...         0.933263   
+265  {'model__alpha': 1e-06, 'model__loss': 'log', ...         0.933163   
+..                                                 ...              ...   
+287  {'model__alpha': 1e-07, 'model__loss': 'log_lo...              NaN   
+288  {'model__alpha': 1e-07, 'model__loss': 'log_lo...              NaN   
+289  {'model__alpha': 1e-07, 'model__loss': 'log_lo...              NaN   
+60   {'model__alpha': 0.01, 'model__loss': 'log_los...              NaN   
+202  {'model__alpha': 1e-05, 'model__loss': 'log_lo...              NaN   
+
+     rank_test_score  
+180                1  
+190                2  
+185                3  
+255                4  
+265                5  
+..               ...  
+287              401  
+288              402  
+289              403  
+60               404  
+202              405  
+
+[405 rows x 7 columns]
