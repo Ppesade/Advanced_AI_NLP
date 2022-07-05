@@ -47,6 +47,7 @@ from sklearn.linear_model import LogisticRegression
 # Reporting
 from sklearn.metrics import classification_report
 from sklearn.metrics import accuracy_score
+from sklearn.metrics import precision_recall_curve
 import matplotlib.pyplot as plt
 
 # Models used
@@ -346,29 +347,33 @@ def create_multiclasslearningcurve(train_data, test_data, selected_estimator, lo
 
 ##Analysis functions that can be used to dig into the models##
 
-def show_cv_report():
-    ''' Convenience function to print results to analyze them'''
+def show_cv_report(report_dict):
+    ''' Convenience function to print results to analyze them
+    report_dict: report dictionary we would like to analyze'''
     targets = ["science_int", "sports_int", "world_int", "business_int"]
     for index, value in enumerate(targets):
         print("\n CV report for {}\n".format(value[:-4]))
         print(report_dict["cv_report"][index])
 
-def show_classification_report():
-    ''' Convenience function to print results to analyze them'''
+def show_classification_report(report_dict):
+    ''' Convenience function to print results to analyze them
+    report_dict: report dictionary we would like to analyze'''
     targets = ["science_int", "sports_int", "world_int", "business_int"]
     for index, value in enumerate(targets):
         print("\n Classification report of best estimator for {}\n".format(value[:-4]))
         print(report_dict["score_report"][index])
 
-def show_best_estimator():
-    ''' Convenience function to print results to analyze them'''
+def show_best_estimator(report_dict):
+    ''' Convenience function to print results to analyze them
+    report_dict: report dictionary we would like to analyze'''
     targets = ["science_int", "sports_int", "world_int", "business_int"]
     for index, value in enumerate(targets):
         print("\n Parameters of best estimator for {}\n".format(value[:-4]))
         print(report_dict["bestestimator_parameters"][index])    
 
-def show_word_weights():
-    ''' Convenience function to print results to analyze them'''
+def show_word_weights(report_dict):
+    ''' Convenience function to print results to analyze them
+    report_dict: report dictionary we would like to analyze'''
     targets = ["science_int", "sports_int", "world_int", "business_int"]
     for index, value in enumerate(targets):
         print("\n Top words for {} \n".format(value[:-4]))
@@ -376,8 +381,9 @@ def show_word_weights():
         print("\n Worst words for {}\n".format(value[:-4]))
         print(report_dict["bestestimator_weights"][index][:20])      
 
-def show_multiclassword_weights():
-    ''' Convenience function to print results to analyze them'''
+def show_multiclassword_weights(multiclass_report_dict):
+    ''' Convenience function to print results to analyze them
+    multiclass_report_dict: report dictionary we would like to analyze'''
     targets = ["science_int", "sports_int", "world_int", "business_int"]
     for index, value in enumerate(targets):
         sorted_words = sorted(multiclass_report_dict["bestestimator_weights"][0], key=lambda fw: fw[index + 1])
@@ -387,8 +393,9 @@ def show_multiclassword_weights():
         print(sorted_words[:20])      
 
 
-def show_learning_curve():
-    ''' Convenience function to print results to analyze them'''
+def show_learning_curve(report_dict):
+    ''' Convenience function to print results to analyze them
+    report_dict: report dictionary we would like to analyze'''
     targets = ["science_int", "sports_int", "world_int", "business_int"]
     for index, value in enumerate(targets):
         print("\n Learning curve for {}\n".format(value[:-4]))
@@ -400,8 +407,9 @@ def show_learning_curve():
     plt.legend()
     plt.show()
 
-def show_multiclasslearning_curve():
-    ''' Convenience function to print results to analyze them'''
+def show_multiclasslearning_curve(multiclass_report_dict):
+    ''' Convenience function to print results to analyze them
+    multiclass_report_dict: report dictionary we would like to analyze'''
     targets = ["label_int"]
     for index, value in enumerate(targets):
         print("\n Learning curve for {}\n".format(value))
@@ -411,6 +419,80 @@ def show_multiclasslearning_curve():
     plt.ylabel("Accuracy")
     plt.xlabel("# of samples in training")
     plt.legend()
+    plt.show()
+
+
+def show_precision_recall_curve(report_dicts, test_data):
+    '''Convenience function that prints all precision recall curves of the models to be analyzed
+    report_dicts: list of report dictionaries for which we would like to analyze the best models
+    test_data: df with the test data provided
+    returns a plot with the charts'''
+
+    #create a list of the models to analyze
+    models = []
+    for report_dict in report_dicts:
+        models.append(report_dict["grid"][0])
+
+    targets = ["science_int", "sports_int", "world_int", "business_int"]
+
+    #Create a chart for each prediction target
+    for target_index, target in enumerate(targets):
+
+        plt.figure(figsize=(10,10))
+        plt.title('Precision-Recall curve for {}'.format(target))
+        plt.xlabel('precision')
+        plt.ylabel('recall')
+
+
+        colors = ["green", "red", "orange", "black", "blue", "pink"]
+        markers = ['o', 'v', '^', '<', '>', '8']
+        #Create the scatter for each model
+        for model_index, model in enumerate(models):
+            pr = precision_recall_curve(
+                test_data.loc[:,target],
+                model.decision_function(test_data.text),
+                pos_label=1)
+            plt.scatter(y=pr[0], x=pr[1], label='Model {}'.format(model_index), alpha = 0.5, linewidths = 0.5, color = colors[model_index], marker = markers[model_index])
+          
+        plt.grid(True)
+        plt.legend()
+        plt.show()
+
+
+def show_multiclassprecision_recall_curve(multiclass_report_dicts, test_data):
+    '''Convenience function that prints all precision recall curves of the models to be analyzed
+    multiclass_report_dicts: list of report dictionaries for which we would like to analyze the best models
+    test_data: df with the test data provided
+    returns a plot with the charts'''
+
+    #create a list of the models to analyze
+    models = []
+    for report_dict in multiclass_report_dicts:
+        models.append(report_dict["grid"][0])
+
+    targets = ["science_int", "sports_int", "world_int", "business_int"]
+    fig, axes = plt.subplots(2,4)
+
+    #Create a chart for each prediction target
+    for target_index, target in enumerate(targets):
+
+        axes[1, target_index].set_title('Precision-Recall curve for {}'.format(target))
+        axes[1, target_index].set_xlabel('precision')
+        axes[1, target_index].set_ylabel('recall')
+        axes[1, target_index].grid(True)
+
+
+        colors = ["green", "red", "orange", "black", "blue", "pink"]
+        markers = ['o', 'v', '^', '<', '>', '8']
+        #Create the scatter for each model
+        for model_index, model in enumerate(models):
+            pr = precision_recall_curve(
+                test_data.loc[:,target],
+                model.decision_function(test_data.text)[:,target_index],
+                pos_label=1)
+            axes[1, target_index].scatter(y=pr[0], x=pr[1], label='Model {}'.format(model_index), alpha = 0.5, linewidths = 0.5, color = colors[model_index], marker = markers[model_index])
+        
+    fig.legend()
     plt.show()
 
 if __name__ == "__main__":
@@ -428,39 +510,47 @@ if __name__ == "__main__":
         'model__alpha': [(1e-9)]
         }    
 
-    grid = define_gridsearch(model = sgd, param_grid = param_grid, scorer = "accuracy")
+    #create grids for basic sgd and nb
+    grid_sgd = define_gridsearch(model = sgd, param_grid = param_grid, scorer = "accuracy")
+    grid_nb = define_gridsearch(model = sgd, param_grid = param_grid, scorer = "accuracy")
     
-    #Create reporting data
-    report_dict = apply_modelling(grid, train, test)
-    report_dict = create_learningcurve(train, test, grid.best_estimator_, accuracy_score, report_dict) #can choose any estimator; don't have to choose best_estimator here
+    #Create reporting data for sgd and nb
+    report_dict_sgd = apply_modelling(grid_sgd, train, test)
+    report_dict_nb = apply_modelling(grid_nb, train, test)
+    report_dict_sgd = create_learningcurve(train, test, grid_sgd.best_estimator_, accuracy_score, report_dict_sgd) #can choose any estimator; don't have to choose best_estimator here
+    report_dict_nb = create_learningcurve(train, test, grid_nb.best_estimator_, accuracy_score, report_dict_nb) #can choose any estimator; don't have to choose best_estimator here
+
 
     #Saving the results of the testing into 
-    df = pd.DataFrame(report_dict) 
+    df = pd.DataFrame(report_dict_sgd) 
     df.to_csv (r"./06_Session 6 - NLP/Advanced_AI_NLP/base_test_series_data.csv",index = False, header=True)
 
     ##Analysis##
 
     #looking at the performance of the different hyperparameters in the gridsearch
     print("CV report for each target")
-    show_cv_report()
+    show_cv_report(report_dict_sgd)
 
     #Looking at the classification report of the best estimator
     print("Classification reports of best estimators")
-    show_classification_report()
+    show_classification_report(report_dict_sgd)
 
     #Looking at the parameters of the best estimator
     print("Parameters of best estimators")
-    show_best_estimator()
+    show_best_estimator(report_dict_sgd)
 
     #Look at word weights
     print("Word weights of best estimators for each target")
-    show_word_weights()
+    show_word_weights(report_dict_sgd)
 
 
     #looking at the learning curve
     print("Leanring curve of models")
-    show_learning_curve()
+    show_learning_curve(report_dict_sgd)
 
+    #Comparing the precision recall curve of different models
+    report_dicts = [report_dict_sgd, report_dict_nb]
+    show_precision_recall_curve(report_dicts, test)
 
 
     ####### Multiclass models ######
@@ -500,12 +590,16 @@ if __name__ == "__main__":
 
     #Look at word weights
     print("\n Word weights for each target \n")
-    show_multiclassword_weights()
+    show_multiclassword_weights(multiclass_report_dict)
 
 
     #looking at the learning curve
     print("\n Learning curve of models \n")
-    show_multiclasslearning_curve()
+    show_multiclasslearning_curve(multiclass_report_dict)
+
+    #Comparing the precision recall curve of different models
+    multiclass_report_dicts = [multiclass_report_dict]
+    show_multiclassprecision_recall_curve(multiclass_report_dicts, test)
 
     ####### Hyperparameter tuning and ngram models ######
 
@@ -526,23 +620,23 @@ if __name__ == "__main__":
 
     #looking at the performance of the different hyperparameters in the gridsearch
     print("CV report for each target")
-    show_cv_report()
+    show_cv_report(report_dict)
 
     #Looking at the classification report of the best estimator
     print("Classification reports of best estimators")
-    show_classification_report()
+    show_classification_report(report_dict)
 
     #Looking at the parameters of the best estimator
     print("Parameters of best estimators")
-    show_best_estimator()
+    show_best_estimator(report_dict)
 
     #Look at word weights
     print("Word weights of best estimators for each target")
-    show_word_weights()
+    show_word_weights(report_dict)
 
     #looking at the learning curve
     print("Leanring curve of models")
-    show_learning_curve()
+    show_learning_curve(report_dict)
 
     #Define Stochastic Gradient Descent model
     param_grid = define_param_grid(model = mr_naivebayes, ngram = 3)
@@ -561,20 +655,20 @@ if __name__ == "__main__":
 
     #looking at the performance of the different hyperparameters in the gridsearch
     print("CV report for each target")
-    show_cv_report()
+    show_cv_report(report_dict)
 
     #Looking at the classification report of the best estimator
     print("Classification reports of best estimators")
-    show_classification_report()
+    show_classification_report(report_dict)
 
     #Looking at the parameters of the best estimator
     print("Parameters of best estimators")
-    show_best_estimator()
+    show_best_estimator(report_dict)
 
     #Look at word weights
     print("Word weights of best estimators for each target")
-    show_word_weights()
+    show_word_weights(report_dict)
 
     #looking at the learning curve
     print("Leanring curve of models")
-    show_learning_curve()
+    show_learning_curve(report_dict)
