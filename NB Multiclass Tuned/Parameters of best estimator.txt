@@ -1,0 +1,3 @@
+ Parameters of best estimator 
+
+{'model__alpha': 0.1, 'vect__ngram_range': (1, 2)}
