@@ -34,7 +34,7 @@ Repo for the NLP Assignment in Advanced AI topics
 - Link to download .csv file: https://we.tl/t-3mzu7pTwLj
 - Find .txt files in folder _NB Multiclass Tuned_
 
-# Stochastic Gradient Descent # Ngram range (1,1) to (1,5) #
+# MultiClass Stochastic Gradient Descent # Ngram range (1,1) to (1,5) #
 
 - Link to download .csv file: https://we.tl/t-jNQcpOghyS
 - Find .txt files in folder _SGD Multiclass Tuned_
