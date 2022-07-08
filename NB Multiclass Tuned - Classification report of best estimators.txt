@@ -1,0 +1,12 @@
+ Classification report of best estimator 
+
+              precision    recall  f1-score   support
+
+     Science       0.88      0.88      0.88      2537
+      Sports       0.96      0.98      0.97      2458
+       World       0.91      0.90      0.90      2509
+    Business       0.88      0.87      0.87      2496
+
+    accuracy                           0.91     10000
+   macro avg       0.91      0.91      0.91     10000
+weighted avg       0.91      0.91      0.91     10000
