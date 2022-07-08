@@ -26,3 +26,15 @@ Repo for the NLP Assignment in Advanced AI topics
 
 - Link to download .csv file of results for SGD Tuned Test Series Data: https://we.tl/t-c8Q78DqTlE (link expries 8th July)
 - Find .txt files to complement the .csv file attached in link above in folder _SGD Tuned_
+
+##### MultiClass Models #####
+
+# MultiClass Naive Bayes # Ngram range (1,1) to (1,5) #
+
+- Link to download .csv file: https://we.tl/t-3mzu7pTwLj
+- Find .txt files in folder _NB Multiclass Tuned_
+
+# Stochastic Gradient Descent # Ngram range (1,1) to (1,5) #
+
+- Link to download .csv file: https://we.tl/t-jNQcpOghyS
+- Find .txt files in folder _SGD Multiclass Tuned_
