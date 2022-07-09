@@ -209,7 +209,10 @@ def sort_feature_weights(grid, fkey='vect', wkey='model'):
     Highest being words most associated with the given topic
     Returns a list of tuples with word/ngram and its weight'''
     F = grid.best_estimator_[fkey].get_feature_names_out()
-    W = grid.best_estimator_[wkey].coef_[0]
+    try:
+        W = grid.best_estimator_[wkey].coef_[0]
+    except AttributeError: #for the mr_naivebayes
+        W = grid.best_estimator_[wkey].feature_log_prob_[1] 
     return sorted(zip(F, W), key=lambda fw: fw[1]) 
 
 def sort_feature_multiclassweights(grid, fkey='vect', wkey='model'):
@@ -218,11 +221,16 @@ def sort_feature_multiclassweights(grid, fkey='vect', wkey='model'):
     Highest being words most associated with the given topic
     Returns a list of tuples with word/ngram and its weight'''
     F = grid.best_estimator_[fkey].get_feature_names_out()
-    science = grid.best_estimator_[wkey].coef_[0]
-    sports = grid.best_estimator_[wkey].coef_[1]
-    world = grid.best_estimator_[wkey].coef_[2]
-    business = grid.best_estimator_[wkey].coef_[3]
-
+    try:
+        science = grid.best_estimator_[wkey].coef_[0]
+        sports = grid.best_estimator_[wkey].coef_[1]
+        world = grid.best_estimator_[wkey].coef_[2]
+        business = grid.best_estimator_[wkey].coef_[3]
+    except AttributeError: #for the mr_naivebayes
+        science = grid.best_estimator_[wkey].feature_log_prob_[0] 
+        sports = grid.best_estimator_[wkey].feature_log_prob_[1]
+        world = grid.best_estimator_[wkey].feature_log_prob_[2]
+        business = grid.best_estimator_[wkey].feature_log_prob_[3]
     return sorted(zip(F, science, sports, world, business), key=lambda fw: fw[1]) 
 
 
@@ -448,10 +456,16 @@ def show_precision_recall_curve(report_dicts, test_data):
         markers = ['o', 'v', '^', '<', '>', '8']
         #Create the scatter for each model
         for model_index, model in enumerate(models):
-            pr = precision_recall_curve(
-                test_data.loc[:,target],
-                model.decision_function(test_data.text),
-                pos_label=1)
+            try:
+                pr = precision_recall_curve(
+                    test_data.loc[:,target],
+                    model.predict_proba(test_data.text)[:,1],
+                    pos_label=1)
+            except AttributeError: #SGD doesnt have the .pred_proba because of the hinge loss
+                pr = precision_recall_curve(
+                    test_data.loc[:,target],
+                    model.decision_function(test_data.text),
+                    pos_label=1)
             plt.scatter(y=pr[0], x=pr[1], label='Model {}'.format(model_index), alpha = 0.5, linewidths = 0.5, color = colors[model_index], marker = markers[model_index])
           
         plt.grid(True)
@@ -486,14 +500,21 @@ def show_multiclassprecision_recall_curve(multiclass_report_dicts, test_data):
         markers = ['o', 'v', '^', '<', '>', '8']
         #Create the scatter for each model
         for model_index, model in enumerate(models):
-            pr = precision_recall_curve(
-                test_data.loc[:,target],
-                model.decision_function(test_data.text)[:,target_index],
-                pos_label=1)
+            try:
+                pr = precision_recall_curve(
+                    test_data.loc[:,target],
+                    model.predict_proba(test_data.text)[:,target_index],
+                    pos_label=1)
+            except AttributeError: #SGD doesnt have the .pred_proba because of the hinge loss
+                pr = precision_recall_curve(
+                    test_data.loc[:,target],
+                    model.decision_function(test_data.text)[:,target_index],
+                    pos_label=1)
             axes[1, target_index].scatter(y=pr[0], x=pr[1], label='Model {}'.format(model_index), alpha = 0.5, linewidths = 0.5, color = colors[model_index], marker = markers[model_index])
         
     fig.legend()
     plt.show()
+
 
 if __name__ == "__main__":
 
@@ -512,7 +533,7 @@ if __name__ == "__main__":
 
     #create grids for basic sgd and nb
     grid_sgd = define_gridsearch(model = sgd, param_grid = param_grid, scorer = "accuracy")
-    grid_nb = define_gridsearch(model = sgd, param_grid = param_grid, scorer = "accuracy")
+    grid_nb = define_gridsearch(model = mr_naivebayes, param_grid = param_grid, scorer = "accuracy")
     
     #Create reporting data for sgd and nb
     report_dict_sgd = apply_modelling(grid_sgd, train, test)
